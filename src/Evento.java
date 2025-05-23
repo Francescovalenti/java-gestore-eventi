@@ -5,7 +5,7 @@ public class Evento {
     private LocalDate data;
     private int postiTotali;
     private int postiPrenotati;
-    private boolean valido;
+    
     
     
 
@@ -16,9 +16,13 @@ public Evento(String titolo, LocalDate data,int postiTotali,int postiPrenotati,b
     this.postiPrenotati=0;
 
     if (data.isBefore(LocalDate.now())){
-        System.out.println("La data che è stata inserita non è valida, essendo una data gia passata.");
-        valido=false;
-       return; 
+       throw new IllegalStateException("La data che è stata inserita non è valida, essendo una data gia passata.");
+        
+       
+    }
+
+    if(postiTotali<=0){
+        throw new IllegalStateException("Riscrive il numero totale dello stadio,grazie. ");
     }
         
 }

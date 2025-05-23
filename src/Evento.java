@@ -9,7 +9,7 @@ public class Evento {
     
     
 
-public Evento(String titolo, LocalDate data,int postiTotali,boolean valido){
+public Evento(String titolo, LocalDate data,int postiTotali,int postiPrenotati,boolean valido){
     this.titolo= titolo;
     this.data = data;
     this.postiTotali= postiTotali;

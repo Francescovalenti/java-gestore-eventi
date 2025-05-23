@@ -9,12 +9,8 @@ public class Evento {
     
     
 
-public Evento(String titolo, LocalDate data,int postiTotali,int postiPrenotati,boolean valido){
-    this.titolo= titolo;
-    this.data = data;
-    this.postiTotali= postiTotali;
-    this.postiPrenotati=0;
-
+public Evento(String titolo, LocalDate data,int postiTotali,int postiPrenotati){
+    
     if (data.isBefore(LocalDate.now())){
        throw new IllegalStateException("La data che è stata inserita non è valida, essendo una data gia passata.");
         
@@ -26,4 +22,10 @@ public Evento(String titolo, LocalDate data,int postiTotali,int postiPrenotati,b
     }
         
 }
+    
+    this.titolo= titolo;
+    this.data = data;
+    this.postiTotali= postiTotali;
+    this.postiPrenotati=0;
+
 }

@@ -54,7 +54,34 @@ public int getpostiPrenotati(){
     return postiPrenotati;
 }
 
+// inserimento metodo per prenotare
 public void prenota(){
-    if (data.isBefore(LocalDate.now()))
+    if (data.isBefore(LocalDate.now())){
+        System.out.println("Impossibile prenotare: evento gia passato");
+    }
+    else if(postiPrenotati >= postiTotali){
+        System.out.println("Posti esauriti");
+    }
+    else{
+        postiPrenotati++;
+        System.out.println("Complimenti,posti prenotati con successo.");
+
+    }
+}
+// inserimento metodo per disdire
+public void disdici(){
+    if (data.isBefore(LocalDate.now())){
+        System.out.println("Impossibile disdire: evento gia passato");
+    }
+    else if(postiPrenotati == 0){
+        System.out.println("Nessuna prenotazione da disdire.");
+    }
+    else{
+        postiPrenotati--;
+        System.out.println("Disdetta eseguita con successo.");
+
+    }
+
+
 }
 }

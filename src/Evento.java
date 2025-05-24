@@ -5,12 +5,12 @@ import java.time.format.DateTimeFormatter;
 public class Evento {
     private String titolo;
     private LocalDate data;
-    private int postiTotali;
+    private double postiTotali;
     private int postiPrenotati;
 
     // costruttore con controlli
 
-    public Evento(String titolo, LocalDate data, int postiTotali, int postiPrenotati) {
+    public Evento(String titolo, LocalDate data, double postiTotali) {
 
         if (data.isBefore(LocalDate.now())) {
             throw new IllegalStateException("La data che è stata inserita non è valida, essendo una data gia passata.");
@@ -27,6 +27,7 @@ public class Evento {
         this.postiPrenotati = 0;
 
     }
+
 
     // getter e setter
     public String getTitolo() {
@@ -45,7 +46,7 @@ public class Evento {
         this.data = data;
     }
 
-    public int getpostiTotali() {
+    public double getpostiTotali() {
         return postiTotali;
     }
 
@@ -84,8 +85,8 @@ public class Evento {
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String formattedDate = data.format(formatter);
-        return "Evento" + titolo + "con capienza di " + postiTotali + "che si svolgerà la data:" + formattedDate
-                + "dove hai acquistato" + postiPrenotati + " biglietti";
+        return "Evento " + titolo + " con capienza di " + postiTotali + " che si svolgerà la data: " + formattedDate
+                + " dove hai acquistato " + postiPrenotati + " biglietti";
 
     }
 }

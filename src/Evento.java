@@ -62,7 +62,7 @@ public class Evento {
             System.out.println("Posti esauriti");
         } else {
             postiPrenotati++;
-            System.out.println("Complimenti,posti prenotati con successo.");
+           
 
         }
     }
@@ -85,8 +85,7 @@ public class Evento {
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String dataFormattata = data.format(formatter);
-        return "Evento " + titolo + " con capienza di " + postiTotali + " che si svolgerà la data: " + dataFormattata
-                + " dove hai acquistato " + postiPrenotati + " biglietti";
+        return "Evento " + titolo + " con capienza di " + postiTotali + " che si svolgerà la data: " + dataFormattata;
 
     }
 }

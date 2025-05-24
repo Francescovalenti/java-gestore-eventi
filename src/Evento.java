@@ -7,7 +7,7 @@ public class Evento {
     private int postiPrenotati;
     
     
-    
+    // costruttore con controlli
 
 public Evento(String titolo, LocalDate data,int postiTotali,int postiPrenotati){
     
@@ -21,11 +21,40 @@ public Evento(String titolo, LocalDate data,int postiTotali,int postiPrenotati){
         throw new IllegalStateException("Riscrive il numero totale dello stadio,grazie. ");
     }
         
-}
+
     
     this.titolo= titolo;
     this.data = data;
     this.postiTotali= postiTotali;
     this.postiPrenotati=0;
 
+}
+// getter e setter 
+public String getTitolo (){
+    return titolo;
+}
+
+public void setTitolo(String titolo){
+    this.titolo=titolo;
+}
+
+public LocalDate getData(){
+    return data;
+}
+
+public void setData(LocalDate data){
+    this.data=data;
+}
+
+public int getpostiTotali(){
+    return postiTotali;
+}
+
+public int getpostiPrenotati(){
+    return postiPrenotati;
+}
+
+public void prenota(){
+    if (data.isBefore(LocalDate.now()))
+}
 }

@@ -24,7 +24,7 @@ public class Main {
     int postiTotali=scanner.nextInt();
 
     // Costruzione del costruttore Evento
-    Evento mioEvento = new Evento("Oasislive25",LocalDate.of(2025  , 9, 27), 80.000); 
+    Evento mioEvento = new Evento("Oasislive25",LocalDate.of(2025  , 9, 27), 10); 
     System.out.println("Complimenti hai creato l'evento");
     System.out.println(mioEvento.toString());
     scanner.nextLine();
@@ -56,8 +56,9 @@ public class Main {
         
         for (int i=0;i < prenotazione; i++){
             mioEvento.prenota();
+            break;
         }
-        System.out.println("Prenotazione effettuata con successo.");
+        System.out.println("Complimenti, " + prenotazione + " posti prenotati con successo.");
         inputValido=true;
     }
 }

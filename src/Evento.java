@@ -1,26 +1,17 @@
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Evento {
     private String titolo;
     private LocalDate data;
-    private float postiTotali;
+    private int postiTotali;
     private int postiPrenotati;
+    
+
 
     // costruttore con controlli
 
-    public Evento(String titolo, LocalDate data, float postiTotali) {
-
-        if (data.isBefore(LocalDate.now())) {
-            throw new IllegalStateException("La data che è stata inserita non è valida, essendo una data gia passata.");
-
-        }
-
-        if (postiTotali <= 0) {
-            throw new IllegalStateException("Riscrive il numero totale dello stadio,grazie. ");
-        }
-
+    public Evento(String titolo, LocalDate data, int postiTotali) {
         this.titolo = titolo;
         this.data = data;
         this.postiTotali = postiTotali;
@@ -28,6 +19,15 @@ public class Evento {
 
     }
 
+    //validatore degli eventi
+
+
+    public boolean isDatavalida(LocalDate data){
+        LocalDate date= LocalDate.now();
+        return true;
+    }
+
+   
 
     // getter e setter
     public String getTitolo() {
@@ -55,16 +55,15 @@ public class Evento {
     }
 
     // inserimento metodo per prenotare
-    public void prenota() {
+    public void prenota() throws Exception {
         if (data.isBefore(LocalDate.now())) {
-            System.out.println("Impossibile prenotare: evento gia passato");
-        } else if (postiPrenotati >= postiTotali) {
-            System.out.println("Posti esauriti");
-        } else {
-            postiPrenotati++;
-           
-
+            throw new Exception("Impossibile prenotare: l'evento è già passato.");
         }
+        if (postiPrenotati >= postiTotali) {
+            throw new Exception("Posti esauriti.");
+        }
+        postiPrenotati++;
+        return;
     }
 
     // inserimento metodo per disdire
@@ -80,12 +79,14 @@ public class Evento {
         }
 
     }
-  // metodo toString per main
+
+    // metodo toString per main
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String dataFormattata = data.format(formatter);
-        return "Evento " + titolo + " con capienza di " + postiTotali + " che si svolgerà la data: " + dataFormattata;
+        return "Evento " + titolo + " con capienza di " + postiTotali + ", prenotati: " + postiPrenotati +
+                ", che si svolgerà la data: " + dataFormattata;
 
     }
 }

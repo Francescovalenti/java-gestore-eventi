@@ -12,6 +12,10 @@ public class Main {
         // Costruzione del costruttore Evento
         System.out.println("Inserisci il nome dell'evento");
         String Titolo = scanner.nextLine();
+        if (Titolo == null || Titolo.trim().isEmpty()) {
+            System.out.println("Errore: il titolo è obbligatorio.");
+            return;
+        }
 
         System.out.println("Inserisci la data dell'evento (esempio dd/mm/yyyy)");
         String dataString = scanner.nextLine();
@@ -22,7 +26,7 @@ public class Main {
         scanner.nextLine();
 
         Evento mioEvento = new Evento(Titolo, data, postiTotali);
-
+        System.out.println("Il titolo dell'evento è: " + mioEvento.getTitolo());
         // sistema per prenotare
         System.out.println("Vuoi acquistare dei biglietti? (Si/No)");
         String prenotazioni = scanner.nextLine();

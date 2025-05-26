@@ -4,6 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
+   
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -18,7 +19,7 @@ public class Main {
 
         System.out.println("Inserisci il numero di capienza dove si svolgerà l'evento scelto da te");
         int postiTotali = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
 
         Evento mioEvento = new Evento(Titolo, data, postiTotali);
 
@@ -31,11 +32,22 @@ public class Main {
                 System.out.println("Quanti biglietti vuoi prenotare?");
                 int prenotazione = scanner.nextInt();
                 scanner.nextLine();
-                System.out.println("Complimenti, " + prenotazione + " posti prenotati con successo.");
-                break;
-            }
-        }
+                System.out.println("Sei sicuro della scelta?");
+                String conferma = scanner.nextLine();
 
-        scanner.close();
+                if (conferma.equalsIgnoreCase("No")) {
+                    System.out.println("Ritorna indietro");
+                    
+                } else if (conferma.equalsIgnoreCase("Si")) {
+                    System.out.println("Complimenti, " + prenotazione + " posti prenotati con successo.");
+                    break;
+                }
+                else {
+                    System.out.println("Inserire Si o No,altre scelte non sono valide.");
+                }
+            }
+            scanner.close();
+        }
     }
+
 }

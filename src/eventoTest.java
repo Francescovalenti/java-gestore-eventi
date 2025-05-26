@@ -1,8 +1,13 @@
 import java.time.LocalDate;
+import java.util.Scanner;
+
 
 public class eventoTest {
  public static void main(String[] args) throws Exception{
-    Evento Oasislive25 =new Evento("Oasislive25",LocalDate.of(2025, 9, 27), 80000);
+    Scanner scanner = new Scanner(System.in);
+    Evento Oasislive25 =new Evento("Oasis",LocalDate.of(2025, 9, 27), 0);
+      // System.out.println("Inserisci il nome dell'evento");
+      //   String titolo = scanner.nextLine();
     System.out.println(Oasislive25);
     Oasislive25.prenota();
     System.out.println(Oasislive25.getpostiPrenotati());
@@ -11,7 +16,10 @@ public class eventoTest {
     Oasislive25.disdici();
     System.out.println(Oasislive25.getpostiPrenotati());
     Oasislive25.disdici();
+    Oasislive25.disdici();
+    Oasislive25.disdici();
     System.out.println(Oasislive25.getpostiPrenotati());
     System.out.print( Oasislive25);
+     scanner.close();
  }
 }

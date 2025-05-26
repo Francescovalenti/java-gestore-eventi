@@ -6,40 +6,66 @@ public class Evento {
     private LocalDate data;
     private int postiTotali;
     private int postiPrenotati;
-    
-
+    private DateTimeFormatter dataFormattata = DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
 
     // costruttore con controlli
 
     public Evento(String titolo, LocalDate data, int postiTotali) {
-        this.titolo = titolo;
-        this.data = data;
-        this.postiTotali = postiTotali;
-        this.postiPrenotati = 0;
+        if(isTitolovalido(titolo)){
+           this.titolo=titolo;
+        }
+    else{
+        throw new RuntimeException("Scrivere titolo");
+    }
+
+    if(isDatavalida(data)){
+    this.data=data;}
+    else {
+        throw new RuntimeException("la data è gia passata,inserire la data giusta.");
+    }
+
+    if(ispostiTotali(postiTotali)){
+    this.postiTotali=postiTotali;}
+    else {
+        throw new RuntimeException("il numero dei" + postiTotali + "non è valida,deve essere maggiore di 0");
+    }
+    this.postiPrenotati=0;
 
     }
 
-    //validatore degli eventi
+    // validatore degli eventi
 
+    public boolean isTitolovalido (String titolo){
+        return titolo !=null && !titolo.isBlank();
+
+    }
 
     public boolean isDatavalida(LocalDate data){
         LocalDate date= LocalDate.now();
         return true;
     }
 
-   
+    public boolean ispostiTotali (int postiTotali){
+        return postiTotali > 0;
+    }
+    
 
     // getter e setter
     public String getTitolo() {
-        return titolo;
+      return titolo;
     }
 
     public void setTitolo(String titolo) {
-        this.titolo = titolo;
+           if(isTitolovalido(titolo)){
+           this.titolo=titolo;
+        }
+    else{
+        System.out.println("Non lasciare spazio vuoto");
     }
+}
 
-    public LocalDate getData() {
-        return data;
+    public DateTimeFormatter gDateTimeFormatterData() {
+        return dataFormattata;
     }
 
     public void setData(LocalDate data) {

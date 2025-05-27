@@ -1,5 +1,5 @@
 
 
-public class Concerto {
+public class Concerto extends Evento {
     
 }

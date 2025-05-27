@@ -12,26 +12,10 @@ public class Evento {
     // costruttore con controlli
 
     public Evento(String titolo, LocalDate data, int postiTotali) {
-        if (isTitoloValido(titolo)) {
-            this.titolo = titolo;
-        } else {
-            throw new RuntimeException("Campo obbligatorio");
-        }
-
-        if (isDataValida(data)) {
-            this.data = data;
-        } else {
-            throw new RuntimeException("La data inserita"+ data.format(dataFormattata) + "non è valida , inserire una data che parte da oggi in poi");
-            }
-        
-
-        if (ispostiTotaliValido(postiTotali)) {
-            this.postiTotali = postiTotali;
-        } else {
-            throw new RuntimeException("il numero " + postiTotali + "non corretto.Inserire almeno 1 quantità");
-        }
+        setTitolo(titolo);
+        setData(data);
+        setPostiTotali(postiTotali);
         this.postiPrenotati = 0;
-
     }
 
     // validatore degli eventi
@@ -42,11 +26,10 @@ public class Evento {
     }
 
     public boolean isDataValida(LocalDate data) {
-        LocalDate date = LocalDate.now();
-        return true;
+         return data.isAfter(LocalDate.now()) || data.isEqual(LocalDate.now());
     }
 
-    public boolean ispostiTotaliValido(int postiTotali) {
+    public boolean isPostiTotaliValido(int postiTotali) {
         return postiTotali > 0;
     }
 
@@ -56,11 +39,10 @@ public class Evento {
     }
 
     public void setTitolo(String titolo) {
-        if (isTitoloValido(titolo)) {
-            this.titolo = titolo;
-        } else {
-            System.out.println("Campo Obbligatorio");
+        if (!isTitoloValido(titolo)) {
+            throw new IllegalArgumentException("Campo obbligatorio: il titolo non può essere vuoto.");
         }
+        this.titolo = titolo;
     }
 
     public DateTimeFormatter getDateTimeFormatterData() {
@@ -68,18 +50,25 @@ public class Evento {
     }
 
     public void setData(LocalDate data) {
-        if (isDataValida(data)) {
-            this.data = data;
-        } else {
-            System.out.println("Data errata, inserire la data corretta");
+        if (!isDataValida(data)) {
+            throw new IllegalArgumentException(
+                    "La data " + data.format(dataFormattata) + " non è valida. Deve essere oggi o una data futura.");
         }
+        this.data = data;
     }
 
-    public int getpostiTotali() {
+    public int getPostiTotali() {
         return postiTotali;
     }
 
-    public int getpostiPrenotati() {
+    public void setPostiTotali(int postiTotali) {
+        if (!isPostiTotaliValido(postiTotali)) {
+            throw new IllegalArgumentException("Il numero " + postiTotali + " non è valido. Inserire almeno 1.");
+        }
+        this.postiTotali = postiTotali;
+    }
+
+   public int getPostiPrenotati() {
         return postiPrenotati;
     }
 
@@ -112,8 +101,8 @@ public class Evento {
     // metodo toString per main
     @Override
     public String toString() {
-        return "Evento " + titolo + " con capienza di " + postiTotali + ", posti prenotati: " + postiPrenotati +
-                ", che si svolgerà la data: " + dataFormattata;
-
+        return "Evento \"" + titolo + "\" con capienza di " + postiTotali +
+                ", posti prenotati: " + postiPrenotati +
+                ", data: " + data.format(dataFormattata);
     }
 }

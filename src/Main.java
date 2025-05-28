@@ -42,7 +42,7 @@ public class Main {
 
             Evento mioEvento = new Evento(Titolo, data, postiTotali);
 
-            System.out.println("Il titolo dell'evento è: " + mioEvento.toString());
+            System.out.println("Il titolo dell'evento è: " + Titolo + " che si svolgera il " + data + " totali posti disponibili " + postiTotali );
 
             // sistema per prenotare
             System.out.println("Vuoi acquistare dei biglietti? (Si/No)");
@@ -73,12 +73,15 @@ public class Main {
                         }
                         int postiRimasti = mioEvento.getPostiTotali() - mioEvento.getPostiPrenotati();
                         System.out
-                                .println("Complimenti, " + prenotazione + " posti prenotati con successo. Sono rimasti "
+                                .println("Complimenti, hai acquistato " + prenotazione + "  biglietti con successo, per l' " + mioEvento.toString()  +" .Sono rimasti "
                                         + postiRimasti + " posti");
                         break;
                     } else {
                         System.out.println("Inserire Si o No, altre scelte non sono valide.");
+                        
                     }
+
+                   
                 }
             }
 

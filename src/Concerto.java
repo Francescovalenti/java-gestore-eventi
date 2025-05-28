@@ -2,20 +2,19 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class Concerto extends Evento {
-    private double Prezzo;
-    private LocalTime dataOrarioEvento;
+    private float Prezzo;
+    private LocalDateTime dataOrarioEvento;
 
-    public Concerto(String titolo, LocalDate data, int prezziTotali, float Prezzo, LocalTime orarioEvento) {
-        super(titolo, data, prezziTotali);
-        // this.Prezzo = Prezzo;
-        // this.dataOrarioEvento = orarioEvento;
-        setData(data);
-        setOrarioEvento(orarioEvento);
+    public Concerto(String titolo, LocalDate data, int postiTotali, float Prezzo, LocalDateTime dataOrarioEvento) {
+        super(titolo, data, postiTotali);
+
+        setPrezzo(Prezzo);
+        setdataOrarioEvento(dataOrarioEvento);
 
     }
 
@@ -23,45 +22,54 @@ public class Concerto extends Evento {
         return this.Prezzo;
     }
 
-    public void setPrezzo(double Prezzo) {
-        this.Prezzo = Prezzo;
-
+    public void setPrezzo(float Prezzo) {
+        if (Prezzo < 0) {
+            throw new IllegalArgumentException("Il prezzo non puo essere 0 oppure inferiore a 0");
+        } else {
+            this.Prezzo = Prezzo;
+        }
     }
 
-    public LocalTime getdataOrarioEvento() {
+    public LocalDateTime getdataOrarioEvento() {
         return this.dataOrarioEvento;
     }
 
-    public void setOrarioEvento(LocalTime dataorarioEvento) {
-        if (dataorarioEvento == null)
-        this.dataOrarioEvento = orarioEvento;
+    public void setdataOrarioEvento(LocalDateTime dataOrarioEvento) {
+        if (dataOrarioEvento == null || dataOrarioEvento.isBefore(LocalDateTime.now())) {
+            throw new IllegalArgumentException("La Data e ora non può essere vuota o passati.");
+        } else {
+            this.dataOrarioEvento = dataOrarioEvento;
+        }
     }
 
-  
-
     // Definisci il modello di formattazione
-    public static String prezzoFormattato() {
-          double prezzo = 12345.6789;
+    public  String PrezzoFormattato() {
+        
         DecimalFormat df = new DecimalFormat("###,##0.00", new DecimalFormatSymbols(Locale.ITALY));
         // Formatta il prezzo
-        String prezzoFormattato = df.format(prezzo);
+        String prezzoFormattato = df.format(this.Prezzo);
         return prezzoFormattato;
 
     }
 
-    public  String dataOrarioFormattato() {
-         LocalDateTime dataOra = LocalDateTime.now();
+    private LocalDateTime parseDataOra(String dataOrarioEvento) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    return LocalDateTime.parse(dataOrarioEvento, formatter);
+}
+
+    public String DataOrarioFormattato() {
 
         // Formattazione in formato "yyyy-MM-dd HH:mm:ss"
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        String dataOraFormattata = dataOra.format(formatter);
-        return dataOraFormattata;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy HH:MM");
+       String dataOraEventoFormattato = dataOrarioEvento.format(formatter);
+        return dataOraEventoFormattato;
     }
-       
-    
 
     @Override
     public String toString() {
-        return getdataOrarioEvento() + "-" + getTitolo() + "-" + getPrezzo();
+        return DataOrarioFormattato() + "" + getTitolo() + "" + PrezzoFormattato();
     }
 }
+
+
+

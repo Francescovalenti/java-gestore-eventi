@@ -101,8 +101,8 @@ public class Evento {
     // metodo toString per main
     @Override
     public String toString() {
-        return "Evento \"" + titolo + "\" con capienza di " + postiTotali +
-                ", posti prenotati: " + postiPrenotati +
+        return "Evento \"" + titolo +
+                " posti prenotati: " + postiPrenotati +
                 ", data: " + data.format(dataFormattata);
     }
 }

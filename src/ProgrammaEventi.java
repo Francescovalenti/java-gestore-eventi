@@ -12,6 +12,7 @@ public class ProgrammaEventi {
         this.titolo=titolo;
         this.eventi=new ArrayList<>();
     }
+        // Metodo per aggiungere un evento alla lista
     public void  aggiungiEvento(Evento evento){
         eventi.add(evento);
     }

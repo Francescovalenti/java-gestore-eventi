@@ -60,7 +60,7 @@ public class Concerto extends Evento {
     public String DataOrarioFormattato() {
 
         // Formattazione in formato "yyyy-MM-dd HH:mm:ss"
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy HH:MM");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy HH:mm");
        String dataOraEventoFormattato = dataOrarioEvento.format(formatter);
         return dataOraEventoFormattato;
     }

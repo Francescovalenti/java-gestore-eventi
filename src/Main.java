@@ -73,7 +73,7 @@ public class Main {
                         }
                         int postiRimasti = mioEvento.getPostiTotali() - mioEvento.getPostiPrenotati();
                         System.out
-                                .println("Complimenti, hai acquistato " + prenotazione + "  biglietti con successo, per l' " + mioEvento.toString()  +" .Sono rimasti "
+                                .println("Complimenti, hai acquistato " + prenotazione + "  biglietti con successo, per l' " + mioEvento.infoEvento()  +" .Sono rimasti "
                                         + postiRimasti + " posti");
                         break;
                     } else {

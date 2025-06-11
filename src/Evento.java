@@ -99,7 +99,8 @@ public class Evento {
             System.out.println("Impossibile disdire: evento gia passato");
         } else if (postiPrenotati == 0) {
             System.out.println("Nessuna prenotazione da disdire.");
-        } else {
+        } 
+        else {
             postiPrenotati--;
             System.out.println("Disdetta eseguita con successo.");
 
@@ -107,11 +108,15 @@ public class Evento {
 
     }
 
+    public String infoEvento () {
+
+         return "Evento \"" + titolo + " posti prenotati: " + postiPrenotati + ", data: " + data.format(dataFormattata);
+
+    }
+
     // metodo toString per main
     @Override
     public String toString() {
-        return "Evento \"" + titolo +
-                " posti prenotati: " + postiPrenotati +
-                ", data: " + data.format(dataFormattata);
+         return data.format(dataFormattata) + "-" + titolo.toUpperCase();
     }
 }

@@ -97,7 +97,8 @@ public class Evento {
     public void disdici() {
         if (data.isBefore(LocalDate.now())) {
             System.out.println("Impossibile disdire: evento gia passato");
-        } else if (postiPrenotati == 0) {
+        } 
+        else if (postiPrenotati == 0) {
             System.out.println("Nessuna prenotazione da disdire.");
         } 
         else {
@@ -110,7 +111,7 @@ public class Evento {
 
     public String infoEvento () {
 
-         return "Evento \"" + titolo + " posti prenotati: " + postiPrenotati + ", data: " + data.format(dataFormattata);
+         return "Evento " + titolo + " posti prenotati: " + postiPrenotati + ", data: " + data.format(dataFormattata);
 
     }
 

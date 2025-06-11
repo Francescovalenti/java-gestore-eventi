@@ -11,7 +11,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        // Costruzione del costruttore Evento
+        // Costruzione del istanza Evento
         try {
             System.out.println("Inserisci il nome dell'evento");
             String Titolo = scanner.nextLine();
@@ -68,7 +68,9 @@ public class Main {
 
                     if (conferma.equalsIgnoreCase("No")) {
                         System.out.println("Ritorna indietro");
-                    } else if (conferma.equalsIgnoreCase("Si")) {
+                    } 
+                    
+                    else if (conferma.equalsIgnoreCase("Si")) {
                         for (int i = 0; i < prenotazione; i++) {
                             mioEvento.prenota();
                         }
@@ -102,11 +104,11 @@ public class Main {
 
                     int prenotati = mioEvento.getPostiPrenotati();
 
-                    if (disdette > prenotati) {
-                        System.out.println("Errore: non puoi disdire più biglietti (" + disdette
-                                + ") di quanti ne hai prenotati (" + prenotati + ").");
-                        continue;
-                    }
+                    // if (disdette > prenotati) {
+                    //     System.out.println("Errore: non puoi disdire più biglietti (" + disdette
+                    //             + ") di quanti ne hai prenotati (" + prenotati + ").");
+                    //     continue;
+                    // }
 
                     if (confermaDisdetta.equalsIgnoreCase("No")) {
                         System.out.println("Ritorna indietro");

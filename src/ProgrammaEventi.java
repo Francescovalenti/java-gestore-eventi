@@ -25,7 +25,7 @@ public class ProgrammaEventi {
      public List<Evento> eventiInData(LocalDate data) {
         List<Evento> eventiInData = new ArrayList<>();
         for (Evento musica : eventi) {
-            if (musica.getData().equals(data)) {
+            if (musica.getDateTimeFormatter().equals(data)) {
                 eventiInData.add(musica);
             }
         }
@@ -61,6 +61,6 @@ public class ProgrammaEventi {
  // Metodo di string per mostrare titolo e evento mostrati in ordine di data
 
  public String eventoConData() {
-    return titolo + "/n"+ eventi.stream().sorted(Comparator.comparing(Evento::getData)).map(Evento::toString).collect(Collectors.joining("\n"));
+    return titolo + "\n" + eventi.stream().sorted(Comparator.comparing(Evento::getData)).map(Evento::toString).collect(Collectors.joining("\n"));
  }
 }

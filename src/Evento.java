@@ -12,9 +12,12 @@ public class Evento {
     // costruttore con controlli
 
     public Evento(String titolo, LocalDate data, int postiTotali) {
-        setTitolo(titolo);
-        setData(data);
-        setPostiTotali(postiTotali);
+        // setTitolo(titolo);
+        // setData(data);
+        // setPostiTotali(postiTotali);
+        this.titolo=titolo;
+        this.data=data;
+        this.postiTotali=postiTotali;
         this.postiPrenotati = 0;
     }
 
@@ -45,7 +48,13 @@ public class Evento {
         this.titolo = titolo;
     }
 
-    public DateTimeFormatter getDateTimeFormatterData() {
+    public LocalDate getData () {
+        return data;
+    }
+
+    
+
+    public DateTimeFormatter getDateTimeFormatter() {
         return dataFormattata;
     }
 

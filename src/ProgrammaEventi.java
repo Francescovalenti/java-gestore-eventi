@@ -25,7 +25,7 @@ public class ProgrammaEventi {
      public List<Evento> eventiInData(LocalDate data) {
         List<Evento> eventiInData = new ArrayList<>();
         for (Evento musica : eventi) {
-            if (musica.getDateTimeFormatter().equals(data)) {
+            if (musica.getData().equals(data)) {
                 eventiInData.add(musica);
             }
         }

@@ -15,7 +15,7 @@ public class Evento {
          setTitolo(titolo);
          setData(data);
          
-         if (!isPostiTotaliValido(postiTotali)) {
+         if (isPostiTotaliValido(postiTotali)) {
             this.postiTotali = postiTotali;}
             else {
          throw new IllegalArgumentException("Il numero " + postiTotali + " non è valido. Inserire almeno 1.");

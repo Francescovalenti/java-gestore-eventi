@@ -5,21 +5,24 @@ public class Evento {
     // variabili d' istanza
     private String titolo;
     private LocalDate data;
-    private int postiTotali;
+    private final int postiTotali;
     private int postiPrenotati;
     private DateTimeFormatter dataFormattata = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     // costruttore con controlli
 
     public Evento(String titolo, LocalDate data, int postiTotali) {
-        // setTitolo(titolo);
-        // setData(data);
-        // setPostiTotali(postiTotali);
-        this.titolo=titolo;
-        this.data=data;
-        this.postiTotali=postiTotali;
-        this.postiPrenotati = 0;
+         setTitolo(titolo);
+         setData(data);
+         
+         if (!isPostiTotaliValido(postiTotali)) {
+            this.postiTotali = postiTotali;}
+            else {
+         throw new IllegalArgumentException("Il numero " + postiTotali + " non è valido. Inserire almeno 1.");
+        }
+        
     }
+    
 
     // validatore degli eventi
 
@@ -52,8 +55,6 @@ public class Evento {
         return data;
     }
 
-    
-
     public DateTimeFormatter getDateTimeFormatter() {
         return dataFormattata;
     }
@@ -70,12 +71,6 @@ public class Evento {
         return postiTotali;
     }
 
-    public void setPostiTotali(int postiTotali) {
-        if (!isPostiTotaliValido(postiTotali)) {
-            throw new IllegalArgumentException("Il numero " + postiTotali + " non è valido. Inserire almeno 1.");
-        }
-        this.postiTotali = postiTotali;
-    }
 
    public int getPostiPrenotati() {
         return postiPrenotati;
@@ -97,11 +92,9 @@ public class Evento {
     public void disdici() {
         if (data.isBefore(LocalDate.now())) {
             System.out.println("Impossibile disdire: evento gia passato");
-        } 
-        else if (postiPrenotati == 0) {
+        } else if (postiPrenotati == 0) {
             System.out.println("Nessuna prenotazione da disdire.");
-        } 
-        else {
+        } else {
             postiPrenotati--;
             System.out.println("Disdetta eseguita con successo.");
 
@@ -109,15 +102,15 @@ public class Evento {
 
     }
 
-    public String infoEvento () {
+    public String infoEvento() {
 
-         return "Evento " + titolo + " posti prenotati: " + postiPrenotati + ", data: " + data.format(dataFormattata);
+        return "Evento " + titolo + " posti prenotati: " + postiPrenotati + ", data: " + data.format(dataFormattata);
 
     }
 
     // metodo toString per main
     @Override
     public String toString() {
-         return data.format(dataFormattata) + "-" + titolo.toUpperCase();
+        return data.format(dataFormattata) + "-" + titolo.toUpperCase();
     }
 }

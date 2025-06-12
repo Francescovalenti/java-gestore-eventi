@@ -12,7 +12,7 @@ public class ProgrammaEventi {
    
 
     //costruttore
-    public ProgrammaEventi(String titolo){
+    public ProgrammaEventi(String titolo ){
         this.titolo=titolo;
         this.eventi=new ArrayList<>();
     }

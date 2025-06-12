@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class Concerto extends Evento {
-    private float Prezzo;
+    private float prezzo;
     private LocalDateTime dataOrarioEvento;
 
     public Concerto(String titolo, LocalDate data, int postiTotali, float Prezzo, LocalDateTime dataOrarioEvento) {
@@ -19,14 +19,14 @@ public class Concerto extends Evento {
     }
 
     public double getPrezzo() {
-        return this.Prezzo;
+        return this.prezzo;
     }
 
     public void setPrezzo(float Prezzo) {
         if (Prezzo < 0) {
             throw new IllegalArgumentException("Il prezzo non puo essere 0 oppure inferiore a 0");
         } else {
-            this.Prezzo = Prezzo;
+            this.prezzo = Prezzo;
         }
     }
 
@@ -43,11 +43,11 @@ public class Concerto extends Evento {
     }
 
     // Definisci il modello di formattazione
-    public  String PrezzoFormattato() {
+    public  String getPrezzoFormattato() {
         
         DecimalFormat df = new DecimalFormat("###,##0.00", new DecimalFormatSymbols(Locale.ITALY));
         // Formatta il prezzo
-        String prezzoFormattato = df.format(this.Prezzo);
+        String prezzoFormattato = df.format(this.prezzo);
         return prezzoFormattato;
 
     }
@@ -57,7 +57,7 @@ public class Concerto extends Evento {
     return LocalDateTime.parse(dataOrarioEvento, formatter);
 }
 
-    public String DataOrarioFormattato() {
+    public String getDataOrarioFormattato() {
 
         // Formattazione in formato "yyyy-MM-dd HH:mm:ss"
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy HH:mm");
@@ -67,7 +67,7 @@ public class Concerto extends Evento {
 
     @Override
     public String toString() {
-        return super.toString() + DataOrarioFormattato() + "" + getTitolo() + "" + PrezzoFormattato();
+        return super.toString() + getDataOrarioFormattato() + "" + getTitolo() + "" + getPrezzoFormattato();
     }
 }
 

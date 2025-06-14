@@ -37,7 +37,7 @@ public class Main {
                 postiTotali = scanner.nextInt();
                 scanner.nextLine();
             } catch (InputMismatchException e) {
-                throw new IllegalArgumentException("Errore: devi inserire un numero intero per la capienza.");
+                throw new IllegalArgumentException("Errore: devi inserire un numero positivo per la capienza.");
             }
 
             Evento mioEvento = new Evento(Titolo, data, postiTotali);

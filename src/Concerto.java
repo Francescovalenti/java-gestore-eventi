@@ -8,13 +8,13 @@ import java.util.Locale;
 
 public class Concerto extends Evento {
     private float prezzo;
-    private LocalDateTime dataOrarioEvento;
+    private LocalDateTime dataOrarioConcerto;
 
-    public Concerto(String titolo, LocalDate data, int postiTotali, float Prezzo, LocalDateTime dataOrarioEvento) {
+    public Concerto(String titolo, LocalDate data, int postiTotali, float Prezzo, LocalDateTime dataOrarioConcerto) {
         super(titolo, data, postiTotali);
 
         setPrezzo(Prezzo);
-        setdataOrarioEvento(dataOrarioEvento);
+        setdataOrarioConcerto(dataOrarioConcerto);
 
     }
 
@@ -30,15 +30,15 @@ public class Concerto extends Evento {
         }
     }
 
-    public LocalDateTime getdataOrarioEvento() {
-        return this.dataOrarioEvento;
+    public LocalDateTime getdataOrarioConcerto() {
+        return this.dataOrarioConcerto;
     }
 
-    public void setdataOrarioEvento(LocalDateTime dataOrarioEvento) {
-        if (dataOrarioEvento == null || dataOrarioEvento.isBefore(LocalDateTime.now())) {
+    public void setdataOrarioConcerto(LocalDateTime dataOrarioConcerto) {
+        if (dataOrarioConcerto == null || dataOrarioConcerto.isBefore(LocalDateTime.now())) {
             throw new IllegalArgumentException("La Data e ora non può essere vuota o passati.");
         } else {
-            this.dataOrarioEvento = dataOrarioEvento;
+            this.dataOrarioConcerto = dataOrarioConcerto;
         }
     }
 
@@ -61,7 +61,7 @@ public class Concerto extends Evento {
 
         // Formattazione in formato "yyyy-MM-dd HH:mm:ss"
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy HH:mm");
-       String dataOraEventoFormattato = dataOrarioEvento.format(formatter);
+       String dataOraEventoFormattato = dataOrarioConcerto.format(formatter);
         return dataOraEventoFormattato;
     }
 

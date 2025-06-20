@@ -96,8 +96,7 @@ public class Evento {
             System.out.println("Nessuna prenotazione da disdire.");
         } else {
             postiPrenotati--;
-            System.out.println("Disdetta eseguita con successo.");
-
+            
         }
 
     }

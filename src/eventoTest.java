@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class eventoTest {
   public static void main(String[] args) throws Exception {
-    Scanner scanner = new Scanner(System.in);
+    // Scanner scanner = new Scanner(System.in);
     // Evento Oasislive25 = new Evento("Oasis", LocalDate.of(2025, 9, 27), 2);
     // System.out.println("Inserisci il nome dell'evento");
     // String titolo = scanner.nextLine();

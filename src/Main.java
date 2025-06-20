@@ -116,6 +116,7 @@ public class Main {
                         for (int i = 0; i < disdette; i++) {
                             mioEvento.disdici();
                         }
+                       
                         int postiRimasti = mioEvento.getPostiTotali() - mioEvento.getPostiPrenotati();
                         System.out.println("Hai disdetto " + disdette + " biglietti. Ora ci sono " + postiRimasti
                                 + " posti disponibili.");

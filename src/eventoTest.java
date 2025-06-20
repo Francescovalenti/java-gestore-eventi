@@ -28,15 +28,22 @@ public class eventoTest {
 
     // System.out.println(OasisLive251);
 
-    // Creazione programma
-    ArrayList <Evento> eventi= new ArrayList<>();
-    eventi.add(OasisLive251);
-
-    // Aggiunta dell'evento
    
+        ProgrammaEventi programma = new ProgrammaEventi("Programma Estate 2025");
+
+        Evento evento1 = new Evento("Concerto Oasis", LocalDate.of(2025, 7, 15), 100);
+        Evento evento2 = new Evento("Festa di Mezza Estate", LocalDate.of(2025, 8, 1), 50);
+
+        programma.aggiungiEvento(evento1);
+        programma.aggiungiEvento(evento2);
+
+        System.out.println(programma.eventoConData());
     
-    System.out.println(eventi);
-    scanner.close();
+}
+
+    
+    // System.out.println(eventi);
+    // scanner.close();
 
   }
-}
+

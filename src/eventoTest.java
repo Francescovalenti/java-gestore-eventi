@@ -32,7 +32,7 @@ public class eventoTest {
         ProgrammaEventi programma = new ProgrammaEventi("Programma Estate 2025");
 
         Evento evento1 = new Evento("Concerto Oasis", LocalDate.of(2025, 7, 15), 100);
-        Evento evento2 = new Evento("Festa di Mezza Estate", LocalDate.of(2025, 8, 1), 50);
+        Evento evento2 = new Evento("Fiera Del Libro", LocalDate.of(2025, 8, 1), 50);
 
         programma.aggiungiEvento(evento1);
         programma.aggiungiEvento(evento2);

@@ -26,7 +26,7 @@ public class eventoTest {
      Concerto OasisLive251 = new Concerto("OasisLive25", LocalDate.of(2025, 7, 25), 100, 50.0f,
          LocalDateTime.of(2025, 7, 25, 21, 0));
 
-    // System.out.println(OasisLive251);
+     System.out.println(OasisLive251);
 
    
         ProgrammaEventi programma = new ProgrammaEventi("Programma Estate 2025");

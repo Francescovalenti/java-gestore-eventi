@@ -27,7 +27,7 @@ public class Evento {
     //  validatore degli eventi
 
      public boolean isTitoloValido(String titolo) {
-        return titolo != null && !titolo.trim().isEmpty();
+        return titolo != null &&  !titolo.isBlank();
 
      }
 

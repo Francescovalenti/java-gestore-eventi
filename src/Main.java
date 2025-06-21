@@ -16,7 +16,7 @@ public class Main {
             System.out.println("Inserisci il nome dell'evento");
             String Titolo = scanner.nextLine();
             if (Titolo == null || Titolo.trim().isEmpty()) {
-                throw new IllegalArgumentException("Errore: il titolo è obbligatorio.");
+                throw new IllegalArgumentException("Il titolo è obbligatorio.");
             }
 
             System.out.println("Inserisci la data dell'evento (esempio dd/MM/yyyy)");

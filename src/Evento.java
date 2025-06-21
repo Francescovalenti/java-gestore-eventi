@@ -5,14 +5,14 @@ public class Evento {
     // variabili d' istanza
     private String titolo;
     private LocalDate data;
-    private final int postiTotali;
+    private int postiTotali;
     private int postiPrenotati;
     private DateTimeFormatter dataFormattata = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     // costruttore con controlli
 
     public Evento(String titolo, LocalDate data, int postiTotali) {
-         setTitolo(titolo);
+         this.titolo=titolo;
          setData(data);
          
          if (isPostiTotaliValido(postiTotali)) {
@@ -24,12 +24,12 @@ public class Evento {
     }
     
 
-    // validatore degli eventi
+    //  validatore degli eventi
 
-    public boolean isTitoloValido(String titolo) {
+     public boolean isTitoloValido(String titolo) {
         return titolo != null && !titolo.trim().isEmpty();
 
-    }
+     }
 
     public boolean isDataValida(LocalDate data) {
          return data.isAfter(LocalDate.now()) || data.isEqual(LocalDate.now());
@@ -44,12 +44,12 @@ public class Evento {
         return titolo;
     }
 
-    public void setTitolo(String titolo) {
+     public void setTitolo(String titolo) {
         if (!isTitoloValido(titolo)) {
             throw new IllegalArgumentException("Campo obbligatorio: il titolo non può essere vuoto.");
         }
-        this.titolo = titolo;
-    }
+         this.titolo = titolo;
+     }
 
     public LocalDate getData () {
         return data;

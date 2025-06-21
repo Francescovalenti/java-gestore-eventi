@@ -12,7 +12,7 @@ public class Evento {
     // costruttore con controlli
 
     public Evento(String titolo, LocalDate data, int postiTotali) {
-         this.titolo=titolo;
+         setTitolo(titolo);
          setData(data);
          
          if (isPostiTotaliValido(postiTotali)) {

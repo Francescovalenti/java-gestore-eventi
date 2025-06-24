@@ -2,7 +2,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -11,7 +13,7 @@ public class eventoTest {
    
 // LocalDate data = LocalDate.of(2025, 9, 27);
 // LocalTime orario = LocalTime.of(21, 0);
-// Concerto mioConcerto = new Concerto("Oasis", data, 100, 50.00f, orario);
+// Concerto mioConcerto = new Concerto("Concerto Rock", data, 100, 50.00f, orario);
 
 //      System.out.println(mioConcerto);
 
@@ -118,62 +120,101 @@ public class eventoTest {
     //     }
     // }
       // main con ProgrammaEventi
-    // Scanner scanner = new Scanner(System.in);
-    //     DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    //     DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+//      Scanner scanner = new Scanner(System.in);
+//         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    //     System.out.print("Titolo del programma eventi: ");
-    //     String titoloProgramma = scanner.nextLine();
-    //     ProgrammaEventi programma = new ProgrammaEventi(titoloProgramma);
+//         System.out.println("Benvenuto nel gestore di Programma Eventi!");
+//         System.out.print("Inserisci il titolo del programma: ");
+//         String titoloProgramma = scanner.nextLine();
 
-    //     boolean continua = true;
+//         ProgrammaEventi programma = new ProgrammaEventi(titoloProgramma);
 
-    //     while (continua) {
-    //         System.out.print("\nVuoi inserire un evento o un concerto? (evento/concerto): ");
-    //         String tipo = scanner.nextLine().toLowerCase();
+//         boolean continua = true;
+//         while (continua) {
+//             System.out.println("\n--- MENU ---");
+//             System.out.println("1. Aggiungi evento");
+//             System.out.println("2. Mostra eventi in una data");
+//             System.out.println("3. Numero totale eventi");
+//             System.out.println("4. Mostra tutti gli eventi ordinati per data");
+//             System.out.println("5. Svuota il programma eventi");
+//             System.out.println("6. Esci");
+//             System.out.print("Scelta: ");
+//             String scelta = scanner.nextLine();
 
-    //         try {
-    //             System.out.print("Titolo: ");
-    //             String titolo = scanner.nextLine();
+//             switch (scelta) {
+//                 case "1":
+//                     System.out.print("Titolo dell'evento: ");
+//                     String titoloEvento = scanner.nextLine();
 
-    //             System.out.print("Data (formato dd/MM/yyyy): ");
-    //             LocalDate data = LocalDate.parse(scanner.nextLine(), dateFormatter);
+//                     System.out.print("Data evento (dd/MM/yyyy): ");
+//                     String dataStr = scanner.nextLine();
+//                     try {
+//                         LocalDate data = LocalDate.parse(dataStr, formatter);
 
-    //             System.out.print("Posti totali: ");
-    //             int postiTotali = Integer.parseInt(scanner.nextLine());
+//                         System.out.print("Numero posti totali: ");
+//                         int posti = Integer.parseInt(scanner.nextLine());
 
-    //             if (tipo.equals("evento")) {
-    //                 Evento evento = new Evento(titolo, data, postiTotali);
-    //                 programma.aggiungiEvento(evento);
-    //                 System.out.println("✅ Evento aggiunto.");
-    //             } else if (tipo.equals("concerto")) {
-    //                 System.out.print("Orario (formato HH:mm): ");
-    //                 LocalTime orario = LocalTime.parse(scanner.nextLine(), timeFormatter);
+//                         Evento nuovoEvento = new Evento(titoloEvento, data, posti);
+//                         programma.aggiungiEvento(nuovoEvento);
+//                         System.out.println("Evento aggiunto con successo.");
 
-    //                 System.out.print("Prezzo: ");
-    //                 float prezzo = Float.parseFloat(scanner.nextLine());
+//                     } catch (DateTimeParseException e) {
+//                         System.out.println("Formato data non valido. Riprova.");
+//                     } catch (NumberFormatException e) {
+//                         System.out.println("Numero di posti non valido.");
+//                     } catch (Exception e) {
+//                         System.out.println("Errore: " + e.getMessage());
+//                     }
+//                     break;
 
-    //                 Concerto concerto = new Concerto(titolo, data, postiTotali, prezzo, orario);
-    //                 programma.aggiungiEvento(concerto);
-    //                 System.out.println("✅ Concerto aggiunto.");
-    //             } else {
-    //                 System.out.println("❌ Tipo non riconosciuto.");
-    //             }
+//                 case "2":
+//                     System.out.print("Inserisci una data (dd/MM/yyyy): ");
+//                     try {
+//                         String dataInput = scanner.nextLine();
+//                         LocalDate dataRichiesta = LocalDate.parse(dataInput, formatter);
+//                         List<Evento> eventiInData = programma.eventiInData(dataRichiesta);
+//                         if (eventiInData.isEmpty()) {
+//                             System.out.println("Nessun evento trovato in quella data.");
+//                         } else {
+//                             System.out.println("Eventi in data " + dataInput + ":");
+//                             for (Evento e : eventiInData) {
+//                                 System.out.println(e);
+//                             }
+//                         }
+//                     } catch (DateTimeParseException e) {
+//                         System.out.println("Data non valida.");
+//                     }
+//                     break;
 
-    //         } catch (Exception e) {
-    //             System.out.println("❌ Errore: " + e.getMessage());
-    //         }
+//                 case "3":
+//                     System.out.println("Numero di eventi nel programma: " + programma.numeroEventi());
+//                     break;
 
-    //         System.out.print("Vuoi aggiungere un altro evento? (si/no): ");
-    //         String risposta = scanner.nextLine().toLowerCase();
-    //         continua = risposta.equals("si") || risposta.equals("sì");
-    //     }
+//                 case "4":
+//                     System.out.println("Eventi ordinati per data:");
+//                     System.out.println(programma.eventoConData());
+//                     break;
 
-    //     System.out.println("\n📅 Programma completo:");
-    //     System.out.println(programma.eventoConData());
+//                 case "5":
+//                     programma.svuotaEventi();
+//                     System.out.println("Programma eventi svuotato.");
+//                     break;
 
-    //     scanner.close();
-    // }
+//                 case "6":
+//                     continua = false;
+//                     System.out.println("Uscita dal programma.");
+//                     break;
+
+//                 default:
+//                     System.out.println("Scelta non valida. Riprova.");
+//                     break;
+//             }
+//         }
+
+//         scanner.close();
+//     }
+// }
+
   }
 }
 

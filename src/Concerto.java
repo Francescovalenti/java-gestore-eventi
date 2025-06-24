@@ -1,23 +1,24 @@
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class Concerto extends Evento {
     private float prezzo;
-    private LocalDateTime dataOrarioConcerto;
+    private LocalTime OrarioConcerto;
 
-    public Concerto(String titolo, LocalDate data, int postiTotali, float Prezzo, LocalDateTime dataOrarioConcerto) {
+    public Concerto(String titolo, LocalDate data, int postiTotali, float Prezzo, LocalTime OrarioConcerto) {
         super(titolo, data, postiTotali);
 
         setPrezzo(Prezzo);
-        setdataOrarioConcerto(dataOrarioConcerto);
+        setOrarioConcerto(OrarioConcerto);
 
     }
 
+   
     public double getPrezzo() {
         return this.prezzo;
     }
@@ -30,19 +31,19 @@ public class Concerto extends Evento {
         }
     }
 
-    public LocalDateTime getdataOrarioConcerto() {
-        return this.dataOrarioConcerto;
+    public LocalTime getdataOrarioConcerto() {
+        return this.OrarioConcerto;
     }
 
-    public void setdataOrarioConcerto(LocalDateTime dataOrarioConcerto) {
-        if (dataOrarioConcerto == null || dataOrarioConcerto.isBefore(LocalDateTime.now())) {
+    public void setOrarioConcerto(LocalTime OrarioConcerto) {
+        if (OrarioConcerto == null || OrarioConcerto.isBefore(LocalTime.now())) {
             throw new IllegalArgumentException("La Data e ora non può essere vuota o passati.");
         } else {
-            this.dataOrarioConcerto = dataOrarioConcerto;
+            this.OrarioConcerto = OrarioConcerto;
         }
     }
 
-    // Definisci il modello di formattazione
+    // Definisce il modello di formattazione
     public  String getPrezzoFormattato() {
         
         DecimalFormat df = new DecimalFormat("###,##0.00", new DecimalFormatSymbols(Locale.ITALY));
@@ -52,22 +53,22 @@ public class Concerto extends Evento {
 
     }
 
-    private LocalDateTime parseDataOra(String dataOrarioEvento) {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-    return LocalDateTime.parse(dataOrarioEvento, formatter);
+    private LocalTime parseaOra(String OrarioEvento) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm",Locale.getDefault());
+    return LocalTime.parse(OrarioEvento, formatter);
 }
 
-    public String getDataOrarioFormattato() {
+    public String getOrarioFormattato() {
 
         // Formattazione in formato "yyyy-MM-dd HH:mm:ss"
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy HH:mm");
-       String dataOraEventoFormattato = dataOrarioConcerto.format(formatter);
-        return dataOraEventoFormattato;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm", Locale.getDefault());
+       String oraEventoFormattato = OrarioConcerto.format(formatter);
+        return oraEventoFormattato;
     }
 
     @Override
     public String toString() {
-        return getDataOrarioFormattato() + " - " + getTitolo().toUpperCase() + " - " + getPrezzoFormattato();
+        return  getData().format(getDateTimeFormatter()) + " "  + getOrarioFormattato()  + " " + getTitolo().toUpperCase() + "  "  + getPrezzoFormattato();
     }
 }
 

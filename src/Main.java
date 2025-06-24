@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-          // Costruzione del istanza Evento
+        // Costruzione del istanza Evento
         try {
             // Titolo
             System.out.println("Inserisci il nome dell'evento");
@@ -32,7 +32,7 @@ public class Main {
             }
 
             // Capienza
-            
+
             System.out.println("Inserisci il numero massimo di posti per l'evento");
             int postiTotali;
             try {
@@ -68,8 +68,10 @@ public class Main {
                         for (int i = 0; i < prenotazione; i++) {
                             mioEvento.prenota();
                         }
-                        System.out.println("Prenotazione completata. " + mioEvento.infoEvento());
-                        System.out.println("Posti rimasti: " + (mioEvento.getPostiTotali() - mioEvento.getPostiPrenotati()));
+                        int postiRimasti = mioEvento.getPostiTotali() - mioEvento.getPostiPrenotati();
+                        System.out.println("Complimenti, hai acquistato " + prenotazione
+                                + " biglietti con successo, per l' " + mioEvento.infoEvento()
+                                + ". Sono rimasti " + postiRimasti + " posti");
                         break;
                     } else if (conferma.equalsIgnoreCase("No")) {
                         System.out.println("Prenotazione annullata.");
@@ -82,9 +84,10 @@ public class Main {
                 System.out.println("Nessun biglietto acquistato.");
             } else {
                 System.out.println("Risposta non valida.");
+                return;
             }
 
-           // sistema per le disdette
+            // sistema per le disdette
             if (mioEvento.getPostiPrenotati() > 0) {
                 System.out.println("Vuoi disdire dei biglietti? (Si/No)");
                 String rispostaDisdetta = scanner.nextLine();
@@ -106,8 +109,9 @@ public class Main {
                             for (int i = 0; i < disdette; i++) {
                                 mioEvento.disdici();
                             }
-                            System.out.println("Disdetta effettuata. " + mioEvento.infoEvento());
-                            System.out.println("Posti disponibili: " + (mioEvento.getPostiTotali() - mioEvento.getPostiPrenotati()));
+                            int postiRimasti = mioEvento.getPostiTotali() - mioEvento.getPostiPrenotati();
+                            System.out.println("Hai disdetto " + disdette + " biglietti. Ora ci sono " + postiRimasti
+                                    + " posti disponibili.");
                             break;
                         } else if (confermaDisdetta.equalsIgnoreCase("No")) {
                             System.out.println("Disdetta annullata.");
@@ -119,9 +123,11 @@ public class Main {
                 } else {
                     System.out.println("Nessuna disdetta effettuata.");
                 }
-            } else {
-                System.out.println("Non ci sono prenotazioni attive, quindi non puoi disdire.");
             }
+            // else {
+            // System.out.println("Non ci sono prenotazioni attive, quindi non puoi
+            // disdire.");
+            // }
 
         } catch (IllegalArgumentException e) {
             System.out.println("Errore di input: " + e.getMessage());

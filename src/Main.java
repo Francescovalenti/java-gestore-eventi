@@ -54,7 +54,7 @@ public class Main {
 
             if (rispostaPrenota.equalsIgnoreCase("Si")) {
                 while (true) {
-                    int disponibili = mioEvento.getPostiTotali() - mioEvento.getPostiPrenotati();
+                    int disponibili = mioEvento.getEventiDisponibili();
                     System.out.println("Posti disponibili: " + disponibili);
                     System.out.println("Quanti biglietti vuoi prenotare?");
                     int prenotazione = Integer.parseInt(scanner.nextLine());
@@ -68,10 +68,10 @@ public class Main {
                     String conferma = scanner.nextLine();
 
                     if (conferma.equalsIgnoreCase("Si")) {
-                        for (int i = 0; i < prenotazione; i++) {
-                            mioEvento.prenota();
-                        }
-                        int postiRimasti = mioEvento.getPostiTotali() - mioEvento.getPostiPrenotati();
+                        mioEvento.prenota(prenotazione);
+                        // for (int i = 0; i < prenotazione; i++) {
+                        // }
+                        int postiRimasti = mioEvento.getEventiDisponibili();
                         System.out.println("Complimenti, hai acquistato " + prenotazione
                                 + " biglietti con successo, per l' " + mioEvento.infoEvento()
                                 + ". Sono rimasti " + postiRimasti + " posti");
@@ -95,37 +95,38 @@ public class Main {
                 System.out.println("Vuoi disdire dei biglietti? (Si/No)");
                 String rispostaDisdetta = scanner.nextLine();
 
-                if (rispostaDisdetta.equalsIgnoreCase("Si")) {
-                    while (true) {
-                        System.out.println("Quanti biglietti vuoi disdire?");
-                        int disdette = Integer.parseInt(scanner.nextLine());
-
-                        if (disdette > mioEvento.getPostiPrenotati()) {
-                            System.out.println("Errore: non puoi disdire più biglietti di quelli prenotati.");
-                            continue;
-                        }
-
-                        System.out.println("Confermi la disdetta? (Si/No)");
-                        String confermaDisdetta = scanner.nextLine();
-
-                        if (confermaDisdetta.equalsIgnoreCase("Si")) {
-                            for (int i = 0; i < disdette; i++) {
-                                mioEvento.disdici();
-                            }
-                            int postiRimasti = mioEvento.getPostiTotali() - mioEvento.getPostiPrenotati();
-                            System.out.println("Hai disdetto " + disdette + " biglietti. Ora ci sono " + postiRimasti
-                                    + " posti disponibili.");
-                            break;
-                        } else if (confermaDisdetta.equalsIgnoreCase("No")) {
-                            System.out.println("Disdetta annullata.");
-                            break;
-                        } else {
-                            System.out.println("Inserisci 'Si' o 'No'.");
-                        }
-                    }
-                } else {
+                if (!rispostaDisdetta.equalsIgnoreCase("Si")) {
                     System.out.println("Nessuna disdetta effettuata.");
+                    return;
                 }
+                while (true) {
+                    System.out.println("Quanti biglietti vuoi disdire?");
+                    int disdette = Integer.parseInt(scanner.nextLine());
+
+                    if (disdette > mioEvento.getPostiPrenotati()) {
+                        System.out.println("Errore: non puoi disdire più biglietti di quelli prenotati.");
+                        continue;
+                    }
+
+                    System.out.println("Confermi la disdetta? (Si/No)");
+                    String confermaDisdetta = scanner.nextLine();
+
+                    if (confermaDisdetta.equalsIgnoreCase("Si")) {
+                        for (int i = 0; i < disdette; i++) {
+                            mioEvento.disdici();
+                        }
+                        int postiRimasti = mioEvento.getPostiTotali() - mioEvento.getPostiPrenotati();
+                        System.out.println("Hai disdetto " + disdette + " biglietti. Ora ci sono " + postiRimasti
+                                + " posti disponibili.");
+                        break;
+                    } else if (confermaDisdetta.equalsIgnoreCase("No")) {
+                        System.out.println("Disdetta annullata.");
+                        break;
+                    } else {
+                        System.out.println("Inserisci 'Si' o 'No'.");
+                    }
+                }
+                
             }
           
         } catch (IllegalArgumentException e) {
@@ -136,4 +137,38 @@ public class Main {
             scanner.close();
         }
     }
+
+    private static void prenota() {
+        while (true) {
+            int disponibili = mioEvento.getPostiTotali() - mioEvento.getPostiPrenotati();
+            System.out.println("Posti disponibili: " + disponibili);
+            System.out.println("Quanti biglietti vuoi prenotare?");
+            int prenotazione = Integer.parseInt(scanner.nextLine());
+
+            if (prenotazione > disponibili) {
+                System.out.println("Non ci sono abbastanza posti disponibili.");
+                continue;
+            }
+
+            System.out.println("Confermi la prenotazione? (Si/No)");
+            String conferma = scanner.nextLine();
+
+            if (conferma.equalsIgnoreCase("Si")) {
+                for (int i = 0; i < prenotazione; i++) {
+                    mioEvento.prenota();
+                }
+                int postiRimasti = mioEvento.getPostiTotali() - mioEvento.getPostiPrenotati();
+                System.out.println("Complimenti, hai acquistato " + prenotazione
+                        + " biglietti con successo, per l' " + mioEvento.infoEvento()
+                        + ". Sono rimasti " + postiRimasti + " posti");
+                break;
+            } else if (conferma.equalsIgnoreCase("No")) {
+                System.out.println("Prenotazione annullata.");
+                break;
+            } else {
+                System.out.println("Inserisci 'Si' o 'No'.");
+            }
+        }
+    }
 }
+

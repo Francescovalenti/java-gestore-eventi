@@ -11,23 +11,32 @@ import java.util.Scanner;
 
 public class eventoTest {
   public static void main(String[] args) throws Exception {
-   
-// LocalDate data = LocalDate.of(2025, 9, 27);
-// LocalTime orario = LocalTime.of(21, 0);
-// Concerto mioConcerto = new Concerto("Concerto Rock", data, 100, 50.00f, orario);
 
-//      System.out.println(mioConcerto);
+    // initListaEventi();
+    // meth2();
+    // meth3();
+  }
 
-   
-//         ProgrammaEventi programma = new ProgrammaEventi("Programma Estate 2025");
 
-//         Evento evento1 = new Evento("Concerto ", LocalDate.of(2025, 7, 15), 100);
-//         Evento evento2 = new Evento("Fiera Del Libro", LocalDate.of(2025, 8, 1), 50);
+  private static void initListaEventi() {
+       
+    LocalDate data = LocalDate.of(2025, 9, 27);
+    LocalTime orario = LocalTime.of(21, 0);
+    Concerto mioConcerto = new Concerto("Concerto Rock", data, 100, 50.00f, orario);
 
-//         programma.aggiungiEvento(evento1);
-//         programma.aggiungiEvento(evento2);
+        System.out.println(mioConcerto);
 
-//         System.out.println(programma.eventoConData());
+      
+            ProgrammaEventi programma = new ProgrammaEventi("Programma Estate 2025");
+
+            Evento evento1 = new Evento("Concerto ", LocalDate.of(2025, 7, 15), 100);
+            Evento evento2 = new Evento("Fiera Del Libro", LocalDate.of(2025, 8, 1), 50);
+
+            programma.aggiungiEvento(evento1);
+            programma.aggiungiEvento(evento2);
+
+            System.out.println(programma.eventoConData());
+  }
     
 
 

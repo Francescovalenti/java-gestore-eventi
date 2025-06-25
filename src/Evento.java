@@ -2,12 +2,16 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Evento {
+
+    // costante
+    private final static DateTimeFormatter dataFormattata = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     // variabili d' istanza
     private String titolo;
     private LocalDate data;
     private int postiTotali;
     private int postiPrenotati;
-    private DateTimeFormatter dataFormattata = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    
 
     // costruttore con controlli
 
@@ -15,11 +19,7 @@ public class Evento {
          setTitolo(titolo);
          setData(data);
          
-         if (isPostiTotaliValido(postiTotali)) {
-            this.postiTotali = postiTotali;}
-            else {
-         throw new IllegalArgumentException("Il numero " + postiTotali + " non è valido. Inserire almeno 1.");
-        }
+         setPostiTotali(postiTotali);
          
         this.postiPrenotati=0;
     }
@@ -27,16 +27,16 @@ public class Evento {
 
     //  validazione degli eventi
 
-     public boolean isTitoloValido(String titolo) {
+     private boolean isTitoloValido(String titolo) {
         return titolo != null &&  !titolo.isBlank();
 
      }
 
-    public boolean isDataValida(LocalDate data) {
+    private boolean isDataValida(LocalDate data) {
          return data.isAfter(LocalDate.now()) || data.isEqual(LocalDate.now());
     }
 
-    public boolean isPostiTotaliValido(int postiTotali) {
+    private boolean isPostiTotaliValido(int postiTotali) {
         return postiTotali > 0;
     }
 
@@ -77,15 +77,32 @@ public class Evento {
         return postiPrenotati;
     }
 
+    private void setPostiTotali(int postiTotali) {
+
+        if (isPostiTotaliValido(postiTotali)) {
+            this.postiTotali = postiTotali;}
+            else {
+         throw new IllegalArgumentException("Il numero " + postiTotali + " non è valido. Inserire almeno 1.");
+        }
+    }
+
+    public int getEventiDisponibili() {
+
+        return getPostiTotali() - getPostiPrenotati(); //;
+    }
+
     // inserimento metodo per prenotare
     public void prenota() throws Exception {
+        prenota(1);
+    }
+    public void prenota(int nPrenotazioni) throws Exception {
         if (data.isBefore(LocalDate.now())) {
             throw new Exception("Impossibile prenotare: l'evento è già passato.");
         }
         else if(postiPrenotati >= postiTotali) {
             throw new Exception("Posti esauriti.");
         }
-        postiPrenotati++;
+        postiPrenotati+=nPrenotazioni;
         return;
     }
 
@@ -103,7 +120,7 @@ public class Evento {
 
     }
 
-    public String infoEvento() {
+    public String getInfoEvento() {
 
         return "Evento " + titolo + " posti prenotati: " + postiPrenotati + ", data: " + data.format(dataFormattata);
 

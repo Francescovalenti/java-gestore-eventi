@@ -4,6 +4,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -120,104 +121,118 @@ public class eventoTest {
     //     }
     // }
       // main con ProgrammaEventi
-//      Scanner scanner = new Scanner(System.in);
-//         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-//         System.out.println("Benvenuto nel gestore di Programma Eventi!");
-//         System.out.print("Inserisci il titolo del programma: ");
-//         String titoloProgramma = scanner.nextLine();
+  //       Scanner scanner = new Scanner(System.in);
+  //       ProgrammaEventi programma = new ProgrammaEventi("Programma Estate 2025");
+  //       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+  //       boolean continua = true;
 
-//         ProgrammaEventi programma = new ProgrammaEventi(titoloProgramma);
+  //       System.out.println("Benvenuto nella gestione del Programma Eventi!");
 
-//         boolean continua = true;
-//         while (continua) {
-//             System.out.println("\n--- MENU ---");
-//             System.out.println("1. Aggiungi evento");
-//             System.out.println("2. Mostra eventi in una data");
-//             System.out.println("3. Numero totale eventi");
-//             System.out.println("4. Mostra tutti gli eventi ordinati per data");
-//             System.out.println("5. Svuota il programma eventi");
-//             System.out.println("6. Esci");
-//             System.out.print("Scelta: ");
-//             String scelta = scanner.nextLine();
+  //       while (continua) {
+  //           System.out.println("\nScegli un'opzione:");
+  //           System.out.println("1 - Aggiungi evento");
+  //           System.out.println("2 - Mostra eventi ordinati per data");
+  //           System.out.println("3 - Cerca eventi per data");
+  //           System.out.println("4 - Numero eventi presenti");
+  //           System.out.println("5 - Svuota tutti gli eventi");
+  //           System.out.println("6 - Esci");
 
-//             switch (scelta) {
-//                 case "1":
-//                     System.out.print("Titolo dell'evento: ");
-//                     String titoloEvento = scanner.nextLine();
+  //           int scelta;
+  //           try {
+  //               scelta = scanner.nextInt();
+  //               scanner.nextLine(); // pulisce il buffer
+  //           } catch (InputMismatchException e) {
+  //               System.out.println("Errore: inserisci un numero valido.");
+  //               scanner.nextLine();
+  //               continue;
+  //           }
 
-//                     System.out.print("Data evento (dd/MM/yyyy): ");
-//                     String dataStr = scanner.nextLine();
-//                     try {
-//                         LocalDate data = LocalDate.parse(dataStr, formatter);
+  //           if (scelta == 1) {
+  //               System.out.println("Inserisci il titolo dell'evento:");
+  //               String titolo = scanner.nextLine();
 
-//                         System.out.print("Numero posti totali: ");
-//                         int posti = Integer.parseInt(scanner.nextLine());
+  //               System.out.println("Inserisci la data dell'evento (formato dd/MM/yyyy):");
+  //               String dataStr = scanner.nextLine();
+  //               LocalDate data;
+  //               try {
+  //                   data = LocalDate.parse(dataStr, formatter);
+  //               } catch (DateTimeParseException e) {
+  //                   System.out.println("Data non valida. Riprova.");
+  //                   continue;
+  //               }
 
-//                         Evento nuovoEvento = new Evento(titoloEvento, data, posti);
-//                         programma.aggiungiEvento(nuovoEvento);
-//                         System.out.println("Evento aggiunto con successo.");
+  //               System.out.println("Inserisci il numero di posti totali:");
+  //               int postiTotali;
+  //               try {
+  //                   postiTotali = scanner.nextInt();
+  //                   scanner.nextLine();
+  //               } catch (InputMismatchException e) {
+  //                   System.out.println("Numero non valido.");
+  //                   scanner.nextLine();
+  //                   continue;
+  //               }
 
-//                     } catch (DateTimeParseException e) {
-//                         System.out.println("Formato data non valido. Riprova.");
-//                     } catch (NumberFormatException e) {
-//                         System.out.println("Numero di posti non valido.");
-//                     } catch (Exception e) {
-//                         System.out.println("Errore: " + e.getMessage());
-//                     }
-//                     break;
+  //               try {
+  //                   Evento evento = new Evento(titolo, data, postiTotali);
+  //                   programma.aggiungiEvento(evento);
+  //                   System.out.println("Evento aggiunto con successo!");
+  //               } catch (IllegalArgumentException e) {
+  //                   System.out.println("Errore: " + e.getMessage());
+  //               }
 
-//                 case "2":
-//                     System.out.print("Inserisci una data (dd/MM/yyyy): ");
-//                     try {
-//                         String dataInput = scanner.nextLine();
-//                         LocalDate dataRichiesta = LocalDate.parse(dataInput, formatter);
-//                         List<Evento> eventiInData = programma.eventiInData(dataRichiesta);
-//                         if (eventiInData.isEmpty()) {
-//                             System.out.println("Nessun evento trovato in quella data.");
-//                         } else {
-//                             System.out.println("Eventi in data " + dataInput + ":");
-//                             for (Evento e : eventiInData) {
-//                                 System.out.println(e);
-//                             }
-//                         }
-//                     } catch (DateTimeParseException e) {
-//                         System.out.println("Data non valida.");
-//                     }
-//                     break;
+  //           } else if (scelta == 2) {
+  //               System.out.println("\nEventi ordinati per data:");
+  //               System.out.println(programma.eventoConData());
 
-//                 case "3":
-//                     System.out.println("Numero di eventi nel programma: " + programma.numeroEventi());
-//                     break;
+  //           } else if (scelta == 3) {
+  //               System.out.println("Inserisci la data da cercare (dd/MM/yyyy):");
+  //               String dataStr = scanner.nextLine();
+  //               try {
+  //                   LocalDate data = LocalDate.parse(dataStr, formatter);
+  //                   List<Evento> trovati = programma.eventiInData(data);
+  //                   if (trovati.isEmpty()) {
+  //                       System.out.println("Nessun evento trovato in questa data.");
+  //                   } else {
+  //                       System.out.println("Eventi trovati:");
+  //                       for (Evento ev : trovati) {
+  //                           System.out.println(ev);
+  //                       }
+  //                   }
+  //               } catch (DateTimeParseException e) {
+  //                   System.out.println("Formato data non valido.");
+  //               }
 
-//                 case "4":
-//                     System.out.println("Eventi ordinati per data:");
-//                     System.out.println(programma.eventoConData());
-//                     break;
+  //           } else if (scelta == 4) {
+  //               System.out.println("Numero totale di eventi: " + programma.numeroEventi());
 
-//                 case "5":
-//                     programma.svuotaEventi();
-//                     System.out.println("Programma eventi svuotato.");
-//                     break;
+  //           } else if (scelta == 5) {
+  //               System.out.println("Sei sicuro di voler svuotare tutti gli eventi? (si/no)");
+  //               String conferma = scanner.nextLine();
+  //               if (conferma.equalsIgnoreCase("si")) {
+  //                   programma.svuotaEventi();
+  //                   System.out.println("Tutti gli eventi sono stati rimossi.");
+  //               } else {
+  //                   System.out.println("Operazione annullata.");
+  //               }
 
-//                 case "6":
-//                     continua = false;
-//                     System.out.println("Uscita dal programma.");
-//                     break;
+  //           } else if (scelta == 6) {
+  //               System.out.println("Uscita dal programma. Grazie!");
+  //               continua = false;
 
-//                 default:
-//                     System.out.println("Scelta non valida. Riprova.");
-//                     break;
-//             }
-//         }
+  //           } else {
+  //               System.out.println("Scelta non valida. Riprova.");
+  //           }
+  //       }
 
-//         scanner.close();
-//     }
-// }
+  //       scanner.close();
+  //   }
 
-  }
+
+
+  // }
 }
-
+}
 
 
 

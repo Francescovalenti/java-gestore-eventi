@@ -125,11 +125,11 @@ public class eventoTest {
   //       Scanner scanner = new Scanner(System.in);
   //       ProgrammaEventi programma = new ProgrammaEventi("Programma Estate 2025");
   //       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-  //       boolean continua = true;
+  //       boolean isValid = true;
 
   //       System.out.println("Benvenuto nella gestione del Programma Eventi!");
 
-  //       while (continua) {
+  //       while (isValid) {
   //           System.out.println("\nScegli un'opzione:");
   //           System.out.println("1 - Aggiungi evento");
   //           System.out.println("2 - Mostra eventi ordinati per data");

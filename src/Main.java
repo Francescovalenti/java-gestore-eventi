@@ -14,9 +14,11 @@ public class Main {
             // Titolo
             System.out.println("Inserisci il nome dell'evento");
             String titolo = scanner.nextLine();
-            if (titolo == null || titolo.isBlank()) {
+            
+           
+              if (titolo == null || titolo.isBlank()) {
                 throw new IllegalArgumentException("Il titolo è obbligatorio.");
-            }
+             }
 
             // Data
             System.out.println("Inserisci la data dell'evento (esempio dd/MM/yyyy)");
@@ -43,6 +45,7 @@ public class Main {
             }
 
             Evento mioEvento = new Evento(titolo, data, postiTotali);
+        
             System.out.println("Evento creato: " + mioEvento + ", posti totali: " + postiTotali);
 
             // Sistema per prenotare

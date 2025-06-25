@@ -19,7 +19,7 @@ public class Concerto extends Evento {
     }
 
    
-    public double getPrezzo() {
+    public float getPrezzo() {
         return this.prezzo;
     }
 

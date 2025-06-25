@@ -20,6 +20,7 @@ public class Evento {
             else {
          throw new IllegalArgumentException("Il numero " + postiTotali + " non è valido. Inserire almeno 1.");
         }
+         
         this.postiPrenotati=0;
     }
     

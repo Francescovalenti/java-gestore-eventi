@@ -37,7 +37,7 @@ public class Concerto extends Evento {
 
     public void setOrarioConcerto(LocalTime OrarioConcerto) {
         if (OrarioConcerto == null || OrarioConcerto.isBefore(LocalTime.now())) {
-            throw new IllegalArgumentException("La Data e ora non può essere vuota o passati.");
+            throw new IllegalArgumentException("L'ora non può essere vuota o passata.");
         } else {
             this.OrarioConcerto = OrarioConcerto;
         }
@@ -60,7 +60,7 @@ public class Concerto extends Evento {
 
     public String getOrarioFormattato() {
 
-        // Formattazione in formato "yyyy-MM-dd HH:mm:ss"
+        // Formattazione in formato " HH:mm:ss"
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm", Locale.getDefault());
        String oraEventoFormattato = OrarioConcerto.format(formatter);
         return oraEventoFormattato;

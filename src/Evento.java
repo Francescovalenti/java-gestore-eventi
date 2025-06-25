@@ -24,7 +24,7 @@ public class Evento {
     }
     
 
-    //  validatore degli eventi
+    //  validazione degli eventi
 
      public boolean isTitoloValido(String titolo) {
         return titolo != null &&  !titolo.isBlank();
@@ -81,7 +81,7 @@ public class Evento {
         if (data.isBefore(LocalDate.now())) {
             throw new Exception("Impossibile prenotare: l'evento è già passato.");
         }
-        if (postiPrenotati >= postiTotali) {
+        else if(postiPrenotati >= postiTotali) {
             throw new Exception("Posti esauriti.");
         }
         postiPrenotati++;
@@ -96,6 +96,7 @@ public class Evento {
             System.out.println("Nessuna prenotazione da disdire.");
         } else {
             postiPrenotati--;
+            return;
             
         }
 

@@ -14,7 +14,7 @@ public class Main {
             // Titolo
             System.out.println("Inserisci il nome dell'evento");
             String titolo = scanner.nextLine();
-            if (titolo == null || titolo.trim().isEmpty()) {
+            if (titolo == null || titolo.isBlank()) {
                 throw new IllegalArgumentException("Il titolo è obbligatorio.");
             }
 
@@ -124,11 +124,7 @@ public class Main {
                     System.out.println("Nessuna disdetta effettuata.");
                 }
             }
-            // else {
-            // System.out.println("Non ci sono prenotazioni attive, quindi non puoi
-            // disdire.");
-            // }
-
+          
         } catch (IllegalArgumentException e) {
             System.out.println("Errore di input: " + e.getMessage());
         } catch (Exception e) {
